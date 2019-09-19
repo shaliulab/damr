@@ -105,7 +105,7 @@ read_dam_file <- function(path,
   #meta <- met[,file:=basename(path)]
   dt <- dcast(dt, id + t ~ data_type,value.var="value")
   setkeyv(dt, "id")
-  behavr::behavr(dt,meta)
+  fslbehavr::behavr(dt,meta)
 }
 
 clean_dam_data <- function(df, regions, experiment_id, t0){
