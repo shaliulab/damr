@@ -1,4 +1,4 @@
-Package: damr
+Package: fsldamr
 Title: Interface to Drosophila Activity Monitor System Result Files
 Date: 2018-05-17
 Version: 0.3.2
@@ -9,7 +9,7 @@ Authors@R: c(
 Description: Loads behavioural data from the widely used Drosophila Activity Monitor System (DAMS, TriKinetics) into the rethomics framework.
 Depends:  
     R (>= 3.00),
-    behavr,
+    fslbehavr,
     data.table
 Imports: 
    readr
@@ -22,7 +22,7 @@ Suggests:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/rethomics/damr
-BugReports: https://github.com/rethomics/damr/issues
+URL: https://gitlab.com/flysleeplab/fsl-retho/damr
+BugReports: https://gitlab.com/flysleeplab/fsl-retho/damr/issues
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
