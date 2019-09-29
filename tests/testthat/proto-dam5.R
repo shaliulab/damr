@@ -6,10 +6,10 @@ read_dam5_file <- function(path,
                            tz = "UTC"){
   # todo check whether region has duplicates/ is in range
   regions <- region_id
-  start_datetime <- damr:::parse_datetime(start_datetime, tz = tz)
-  stop_datetime <- damr:::parse_datetime(stop_datetime, tz = tz)
+  start_datetime <- fsldamr:::parse_datetime(start_datetime, tz = tz)
+  stop_datetime <- fsldamr:::parse_datetime(stop_datetime, tz = tz)
 
-  first_last_lines <- damr:::find_dam2_first_last_lines(path,
+  first_last_lines <- fsldamr:::find_dam2_first_last_lines(path,
                                                  start_datetime,
                                                  stop_datetime,
                                                  tz)
@@ -75,18 +75,18 @@ path <- "./tests/testthat/M30_DAM5.txt"
 start_datetime = -Inf
 stop_datetime = +Inf
 tz = "UTC"
-start_datetime <- damr:::parse_datetime(start_datetime, tz = tz)
-stop_datetime <- damr:::parse_datetime(stop_datetime, tz = tz)
-first_last_lines <- damr:::find_dam_first_last_lines(path,
+start_datetime <- fsldamr:::parse_datetime(start_datetime, tz = tz)
+stop_datetime <- fsldamr:::parse_datetime(stop_datetime, tz = tz)
+first_last_lines <- fsldamr:::find_dam_first_last_lines(path,
                                                     start_datetime,
                                                     stop_datetime,
                                                     tz)
 
 start_datetime = "2017-12-21 18:00:00"
 stop_datetime = "2017-12-21 20:00:00"
-start_datetime <- damr:::parse_datetime(start_datetime, tz = tz)
-stop_datetime <- damr:::parse_datetime(stop_datetime, tz = tz)
-first_last_lines <- damr:::find_dam_first_last_lines(path,
+start_datetime <- fsldamr:::parse_datetime(start_datetime, tz = tz)
+stop_datetime <- fsldamr:::parse_datetime(stop_datetime, tz = tz)
+first_last_lines <- fsldamr:::find_dam_first_last_lines(path,
                                                       start_datetime,
                                                       stop_datetime,
                                                       tz)
