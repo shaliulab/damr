@@ -1,4 +1,4 @@
 library(testthat)
-library(damr)
+libary(fsldamr)
 
-test_check("damr")
+test_check("fsldamr")

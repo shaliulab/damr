@@ -67,7 +67,7 @@ read_dam5_file <- function(path,
   #meta <- met[,file:=basename(path)]
   dt[,region_id:=NULL]
 
-  behavr::behavr(dt,meta)
+  fslbehavr::behavr(dt,meta)
 }
 
 

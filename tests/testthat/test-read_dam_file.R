@@ -5,8 +5,8 @@ test_that("results match text file", {
   dt <- fsldamr:::read_dam_file(FILE, start_datetime = "2017-06-30 14:45:00", stop_datetime = +Inf)
   dt[ xmv(region_id) == 15 & activity == 10]
   dt
-  expect_equal(dt[t==10*60 & behavr::xmv(region_id)==15, activity], 10)
-  expect_equal(dt[t==11*60 & behavr::xmv(region_id)==14, activity], 9)
+  expect_equal(dt[t==10*60 & fslbehavr::xmv(region_id)==15, activity], 10)
+  expect_equal(dt[t==11*60 & fslbehavr::xmv(region_id)==14, activity], 9)
 })
 
 
