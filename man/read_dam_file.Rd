@@ -5,8 +5,13 @@
 \alias{read_dam2_file}
 \title{Reads data from a single DAM2 single beam or a DAM5 multibeam file}
 \usage{
-read_dam_file(path, region_id = 1:32, start_datetime = -Inf,
-  stop_datetime = +Inf, tz = "UTC")
+read_dam_file(
+  path,
+  region_id = 1:32,
+  start_datetime = -Inf,
+  stop_datetime = +Inf,
+  tz = "UTC"
+)
 }
 \arguments{
 \item{path}{location of the file to read (character)}
