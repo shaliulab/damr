@@ -38,6 +38,9 @@
 #' @references
 #' * [damr tutorial](https://rethomics.github.io/damr.html) -- how to use this function in practice
 #' @aliases load_dam2
+#' @importFrom rlang list2
+#' @importFrom fslbehavr bind_behavr_list set_meta
+#' @importFrom data.table data.table setkeyv
 #' @export load_dam load_dam2
 load_dam <- function(metadata, FUN=NULL, ...){
   . = regions = start_datetime =  stop_datetime =  data = diff_t = NULL
@@ -45,18 +48,22 @@ load_dam <- function(metadata, FUN=NULL, ...){
 
 
   tz="UTC"
+  updateProgress <- rlang::list2(...)$updateProgress
+
   # TODO check for uniqueness in query!!
   q <- data.table::copy(metadata)
   q[, path:=sapply(file_info, function(x) x$path)]
   to_read <- q[,.(regions = list(region_id)),by=c("path","start_datetime","stop_datetime")]
   s <- to_read[,
-               list(data=list(read_dam_file(path,
-                                                    regions[[1]],
-                                                    start_datetime,
-                                                    stop_datetime,
-                                                    tz=tz)
-                              )
-                    ),
+               list(data=list(read_dam_file(
+                 path=path,
+                 region_id=regions[[1]],
+                 start_datetime=start_datetime,
+                 stop_datetime=stop_datetime,
+                 tz=tz,
+                 updateProgress = updateProgress)
+                 )
+               ),
                by="path,start_datetime,stop_datetime"]
 
   d <- fslbehavr::bind_behavr_list(s[,data])
