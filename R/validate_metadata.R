@@ -1,15 +1,36 @@
-validate_datetime <- function(datetime) {
+validate_datetime <- function(metadata, field, check_time=FALSE) {
+  datetime <- metadata[[field]]
   datetime_valid <- purrr::map_chr(datetime, function(x) {tryCatch({
     parse_datetime(x)
-  }, error = function(e) {NA})})
+  }, warning = function(e) {NA})})
 
+  if (check_time) {
+
+    time_valid <- tryCatch({
+      readr::parse_datetime(datetime, format = "%Y-%m-%d %H:%M:%S")
+      }, warning = function(w) NA)
+
+
+    invalid <- (is.na(time_valid))
+    if (sum(invalid) != 0)  {
+      stop(
+        abort_bad_argument(
+          field,
+          sprintf(
+            "follow format YYYY-MM-DD HH:MM:SS. Rows # %s dont follow it",
+            paste(which(invalid), collapse = ", # ")
+          )
+        )
+      )
+    }
+  }
 
   invalid <- (is.na(datetime_valid))
 
   if (sum(invalid) != 0)  {
     stop(
       abort_bad_argument(
-        "date",
+        field,
         sprintf(
           "follow format YYYY-MM-DD. Rows # %s dont follow it",
           paste(which(invalid), collapse = ", # ")
@@ -43,9 +64,11 @@ validate_metadata <- function(metadata) {
   }
 
   # validate the date column
-  validate_datetime(metadata$start_datetime)
-  validate_datetime(metadata$stop_datetime)
+  validate_datetime(metadata, "start_datetime", check_time=TRUE)
+  validate_datetime(metadata, "stop_datetime")
 
+  # TODO
+  # Create anoter error class so it does not have to always follow the same structure
   dups <- duplicated(metadata)
   if (any(dups)) {
     stop(abort_bad_argument(

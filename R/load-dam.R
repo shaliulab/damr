@@ -39,7 +39,7 @@
 #' * [damr tutorial](https://rethomics.github.io/damr.html) -- how to use this function in practice
 #' @aliases load_dam2
 #' @importFrom rlang list2
-#' @importFrom fslbehavr bind_behavr_list set_meta
+#' @importFrom fslbehavr bind_behavr_list setmeta
 #' @importFrom data.table data.table setkeyv
 #' @export load_dam load_dam2
 load_dam <- function(metadata, FUN=NULL, ...){
