@@ -1,4 +1,4 @@
-#' @import fslbehavr
+#' @import behavr
 #' @import data.table
 #' @importFrom stats "na.omit"
 #' @importFrom utils "unzip"
