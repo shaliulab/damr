@@ -10,7 +10,8 @@ read_dam_file(
   region_id = 1:32,
   start_datetime = -Inf,
   stop_datetime = +Inf,
-  tz = "UTC"
+  tz = "UTC",
+  updateProgress = NULL
 )
 }
 \arguments{
@@ -21,6 +22,8 @@ read_dam_file(
 \item{start_datetime, stop_datetime}{the start and the end of an the experiment (see details)}
 
 \item{tz}{the timezone (see \link{OlsonNames} for a list)}
+
+\item{updateProgress}{a function that updates a shiny Progress bar}
 }
 \value{
 A \link{behavr} table.
